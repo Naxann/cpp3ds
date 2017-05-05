@@ -17,3 +17,10 @@ Makefile
 cmake_install.cmake
 cmake_uninstall.cmake
 install_manifest.txt
+/core_resource.cpp
+/src/emu3ds/qrc_emulator.cpp
+/src/emu3ds/cpp3ds-emu_automoc.cpp
+/src/emu3ds/__/__/res/emu/emulator.qrc.depends
+/src/emu3ds/__/__/include/cpp3ds/Emulator/moc_Emulator.cpp_parameters
+/src/emu3ds/__/__/include/cpp3ds/Emulator/moc_Emulator.cpp
+/default_shader.vsh
