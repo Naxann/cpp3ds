@@ -334,6 +334,9 @@ function(add_cia_target target RSF IMAGE SOUND)
         set(BANNER ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target_we}.bnr)
         __add_ncch_banner(${target_we}.bnr ${IMAGE} ${SOUND})
     endif()
+	if (APP_LOGO)
+		set(OPTION_LOGO -logo ${APP_LOGO})
+	endif()
     add_custom_command(OUTPUT ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target_we}.cia
             COMMAND ${MAKEROM} -f cia
             -target t
@@ -347,6 +350,7 @@ function(add_cia_target target RSF IMAGE SOUND)
 			-DAPP_TITLE=${APP_TITLE}
 			-DAPP_PRODUCT_CODE=${APP_PRODUCT_CODE}
 			-DAPP_UNIQUE_ID=${APP_UNIQUE_ID}
+			${OPTION_LOGO}
             DEPENDS ${target} ${RSF} ${ROMFS_FILES} ${SHADER_OUTPUT} ${BANNER} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target_we}.smdh
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
             VERBATIM
