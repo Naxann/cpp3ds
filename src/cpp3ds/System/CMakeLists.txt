@@ -17,5 +17,11 @@ set(SRC
     ${SRCROOT}/Time.cpp
 )
 
+unset(FMT_INCLUDE_DIR CACHE)
+
+find_package(Fmt REQUIRED)
+
+include_directories(${FMT_INCLUDE_DIR})
+
 add_cpp3ds_library(cpp3ds-system
                    SOURCES ${SRC})

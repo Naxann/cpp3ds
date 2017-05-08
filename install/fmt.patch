@@ -1,0 +1,34 @@
+diff -Naur fmt-3.0.1-orig/fmt/posix.cc fmt-3.0.1/fmt/posix.cc
+--- fmt-3.0.1-orig/fmt/posix.cc	2017-01-25 01:10:04.628325000 -0500
++++ fmt-3.0.1/fmt/posix.cc	2017-01-25 01:13:16.578333740 -0500
+@@ -87,13 +87,6 @@
+ // A macro used to prevent expansion of fileno on broken versions of MinGW.
+ #define FMT_ARGS
+
+-int fmt::BufferedFile::fileno() const {
+-  int fd = FMT_POSIX_CALL(fileno FMT_ARGS(file_));
+-  if (fd == -1)
+-    FMT_THROW(SystemError(errno, "cannot get file descriptor"));
+-  return fd;
+-}
+-
+ fmt::File::File(fmt::CStringRef path, int oflag) {
+   int mode = S_IRUSR | S_IWUSR;
+ #if defined(_WIN32) && !defined(__MINGW32__)
+@@ -214,16 +207,6 @@
+   write_end = File(fds[1]);
+ }
+
+-fmt::BufferedFile fmt::File::fdopen(const char *mode) {
+-  // Don't retry as fdopen doesn't return EINTR.
+-  FILE *f = FMT_POSIX_CALL(fdopen(fd_, mode));
+-  if (!f)
+-    FMT_THROW(SystemError(errno, "cannot associate stream with file descriptor"));
+-  BufferedFile file(f);
+-  fd_ = -1;
+-  return file;
+-}
+-
+ long fmt::getpagesize() {
+ #ifdef _WIN32
+   SYSTEM_INFO si;

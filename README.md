@@ -19,10 +19,18 @@ Will be released with v1.0 stable
 
 Requirements
 ------------
- 
+
+For 3DS :
+
 - DevkitARM
 - ctrulib
 - citro3d
+- libfmt
+- libjpeg
+- libfreetype
+- libogg (to support OGG sound format)
+- tremor (to support OGG sound format)
+- faad (to support AAC sound format)
 
 For emulator:
 
@@ -37,7 +45,9 @@ For unit tests:
 
 Credit and Thanks
 -----------------
+- [Cruel](https://github.com/Cruel) - Original work on cpp3ds
 - [Laurent Gomila](https://github.com/LaurentGomila) and SFML team
 - [smealum](https://github.com/smealum) - ctrulib
 - [Lectem](https://github.com/Lectem) - some CMake stuff
 - Everyone on EFNet #3dsdev
+
