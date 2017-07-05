@@ -32,5 +32,10 @@ set_target_properties(${PROJECT_NAME}.elf PROPERTIES COMPILE_FLAGS "${CPP3DS_ARM
 set_target_properties(${PROJECT_NAME}.elf PROPERTIES LINK_FLAGS "-specs=3dsx.specs -march=armv6k -mtune=mpcore -mfloat-abi=hard -gc-sections")
 SET(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 
+if ( APPLE )
+	string ( REPLACE "-Wl,-search_paths_first" "" CMAKE_C_LINK_FLAGS ${CMAKE_C_LINK_FLAGS} )
+	string ( REPLACE "-Wl,-search_paths_first" "" CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} )
+endif ()
+
 add_3dsx_target(${PROJECT_NAME}.elf)
 add_cia_target(${PROJECT_NAME}.elf ${CIA_CONFIG} ${BANNER_IMAGE} ${BANNER_SOUND})
